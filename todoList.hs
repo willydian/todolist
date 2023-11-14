@@ -1,16 +1,19 @@
 import System.IO
 
 mainLoop :: String -> IO ()
-mainLoop dataBase = do
+mainLoop dbFileName = do
     putStrLn "Por favor, ingresa la descripción de la tarea y presiona Enter:"
     taskDescription <- getLine
-    
-    -- Abre el archivo en modo escritura, agrega la descripción y luego cierra el archivo.
-    appendFile dataBase (taskDescription ++ "\n")
-    
-    readFile dataBase >>= putStrLn
-    
-    mainLoop dataBase
+    appendFile dbFileName (taskDescription ++ "\n")
+    putStrLn "\nLista de tareas:"
+    showFileContentWithNumbers dbFileName
+    mainLoop dbFileName
+
+showFileContentWithNumbers :: String -> IO ()
+showFileContentWithNumbers dbFileName = do
+    fileContent <- readFile dbFileName
+    let tasks = lines fileContent
+    mapM_ (\(index, task) -> putStrLn (show index ++ ". " ++ task)) (zip [1..] tasks)
 
 main :: IO ()
 main = do

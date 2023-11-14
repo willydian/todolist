@@ -13,7 +13,7 @@ show FileContent of the list with numbers =
     for each <index, element> of list-enum : 
         show element
 
-f = 
+main = 
     show "Bienvenido a tu lista de tareas." 
     main loop "db.txt"
 
