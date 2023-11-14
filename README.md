@@ -15,6 +15,5 @@ ghc -o todo todoList.hs
 ./todo
 
 # git
-git commit -am  "<commit message>"
 git add -A
 git commit -m "Your Message"
