@@ -23,3 +23,19 @@ ghc -o todo todoList.hs
 # git
 git add -A
 git commit -m "Your Message"
+
+
+# Funciones
+
+++
+getLine
+putStrLn
+zip
+lines
+readFile
+appendFile
+mapM_
+
+Pseudo
+for each
+repeat
