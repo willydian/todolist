@@ -6,14 +6,18 @@ main =
 
 main loop DB:String = 
     show "Por favor, ingresa la descripción de la tarea y presiona Enter:"
-    get info ->
-    add new line ->
-    add to file db
+    add to file db ( add new line (get info))
     show "\nLista de tareas:"
     show list with numbers <read db>
     repeat main loop
 
-show list with numbers <FileContent> = 
-    list-enum <- file-content to list _ enum
-    for each <index, element> of list-enum : 
-        show element
+TaskList = <String> List
+show list with numbers <TaskList> = 
+>   1. tomar el siguiente elemento del tasklist (for each)
+>   2. a ese elemento pongale al principio;
+>        2.1 un numero (iniciando en 1 segun su orden)
+>        2.2 un punto y un espacio
+>   3. muestre el elemento \n
+    for each <index, element> in (enumerate tasklist) : 
+        text = (index + 1) ++ ". " ++ element
+        show text

@@ -24,6 +24,11 @@ ghc -o todo todoList.hs
 git add -A
 git commit -m "Your Message"
 
+**or push an existing repository from the command line**
+git remote add origin https://github.com/willydian/todolist.git
+git branch -M main
+git push -u origin main
+
 
 # Funciones
 
