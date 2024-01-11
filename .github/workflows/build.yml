@@ -1,13 +1,35 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+name: Haskell Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
 jobs:
-  check-bats-version:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install GHC
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ghc
+
+    - name: Build project
+      run: |
+        ghc -o todo todoList.hs
+        # Asegúrate de ajustar el comando según la estructura de tu proyecto y el nombre del archivo
+
+    - name: Archive Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: todo-artifact
+        path: ./todo
+
+    - name: Test project
+      run: |
+        # Agrega comandos para ejecutar pruebas, si es aplicable
