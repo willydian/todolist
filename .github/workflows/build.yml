@@ -14,10 +14,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install GHC
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y ghc
+    - name: Set up Haskell
+      uses: actions/setup-haskell@v1
+      with:
+        ghc-version: '9.4.7'
 
     - name: Build project
       run: |
